@@ -1,5 +1,8 @@
 let camera, scene, renderer;
 
+let panoramaMesh;
+let panoramaTexture;
+
 let isUserInteracting = false,
     onPointerDownMouseX = 0, onPointerDownMouseY = 0,
     lon = 0, onPointerDownLon = 0,
@@ -17,13 +20,11 @@ function init() {
     // invert the geometry on the x-axis so that all of the faces point inward
     geometry.scale(- 1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load('resources/panoramas/20220407_Pachon_P35mm_SOARG_L_Fulld1-CC.jpg');
-    texture.colorSpace = THREE.SRGBColorSpace;
-    const material = new THREE.MeshBasicMaterial({ map: texture });
+    const material = new THREE.MeshBasicMaterial();
+    panoramaMesh = new THREE.Mesh(geometry, material);
+    scene.add(panoramaMesh);
 
-    const mesh = new THREE.Mesh(geometry, material);
-
-    scene.add(mesh);
+    loadPanorama('resources/panoramas/pano1.jpg');
 
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -99,4 +100,21 @@ function animate() {
     camera.lookAt(x, y, z);
 
     renderer.render(scene, camera);
+}
+
+function loadPanorama(url) {
+    new THREE.TextureLoader().load(
+        url,
+        (texture) => {
+            const previousTexture = panoramaTexture;
+            panoramaTexture = texture;
+            panoramaMesh.material.map = texture;
+            panoramaMesh.material.needsUpdate = true;
+            previousTexture?.dispose();
+        },
+        undefined,
+        (error) => {
+            console.error(`Could not load panorama: ${url}`, error);
+        }
+    );
 }

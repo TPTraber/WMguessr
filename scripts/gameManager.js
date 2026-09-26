@@ -12,4 +12,6 @@ function startGame() {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    setTimeout(() => {loadPanorama('resources/panoramas/pano2.jpg');}, 3000);
 }
