@@ -24,8 +24,6 @@ function init() {
     panoramaMesh = new THREE.Mesh(geometry, material);
     scene.add(panoramaMesh);
 
-    loadPanorama("resources/panoramas/pano1.jpg");
-
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
