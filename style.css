@@ -11,14 +11,16 @@ body {
 }
 
 #mapContainer {
-    position: absolute;
-    bottom: 8px;
+    position: fixed;
+    bottom: 16px;
     left: 16px;
-    font-size: 20px;
+    z-index: 10;
+    padding: 0em 1em 0em 1em;
+
 }
 
 #timerContainer {
-    padding: 0em 1em 0em 1em;
+    padding: 0em 1em;
     border-radius: .5em;
     background-color: #004E38;
     border: 2px solid #B79257;
@@ -29,6 +31,14 @@ body {
     z-index: -1;
 }
 
+#map {
+    width: 25em;
+    height: 15em;
+    border: 2px solid #B79257;
+    border-radius: .5em;
+    margin: .5em 0em;
+}
+
 button {
     background-color: #004E38;
     border: 2px solid #B79257;
@@ -37,11 +47,13 @@ button {
     padding: 0em 1em 0em 1em;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
     transition-duration: 0.4s;
     cursor: pointer;
 }
 
 button:hover {
-  background-color: #183028;
+    background-color: #183028;
 }
