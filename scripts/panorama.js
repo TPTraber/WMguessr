@@ -9,7 +9,6 @@ let isUserInteracting = false,
 init();
 
 function init() {
-
     const container = document.getElementById('container');
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
@@ -40,20 +39,16 @@ function init() {
     document.addEventListener('wheel', onDocumentMouseWheel);
 
     window.addEventListener('resize', onWindowResize);
-
 }
 
 function onWindowResize() {
-
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-
 }
 
 function onPointerDown(event) {
-
     if (event.isPrimary === false) return;
 
     isUserInteracting = true;
@@ -66,27 +61,22 @@ function onPointerDown(event) {
 
     document.addEventListener('pointermove', onPointerMove);
     document.addEventListener('pointerup', onPointerUp);
-
 }
 
 function onPointerMove(event) {
-
     if (event.isPrimary === false) return;
 
     lon = (onPointerDownMouseX - event.clientX) * 0.1 + onPointerDownLon;
     lat = (event.clientY - onPointerDownMouseY) * 0.1 + onPointerDownLat;
-
 }
 
 function onPointerUp(event) {
-
     if (event.isPrimary === false) return;
 
     isUserInteracting = false;
 
     document.removeEventListener('pointermove', onPointerMove);
     document.removeEventListener('pointerup', onPointerUp);
-
 }
 
 function onDocumentMouseWheel(event) {
@@ -100,13 +90,6 @@ function onDocumentMouseWheel(event) {
 }
 
 function animate() {
-
-    if (isUserInteracting === false) {
-
-        lon += 0.1;
-
-    }
-
     lat = Math.max(- 85, Math.min(85, lat));
     phi = THREE.MathUtils.degToRad(90 - lat);
     theta = THREE.MathUtils.degToRad(lon);
@@ -118,5 +101,4 @@ function animate() {
     camera.lookAt(x, y, z);
 
     renderer.render(scene, camera);
-
 }
