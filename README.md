@@ -1,1 +1,1 @@
-# WMGuesser
+# WMGuessr
