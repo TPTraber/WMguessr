@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
+    <!-- Page metadata, shared styles, and the interactive map library. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Game</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 
 <body>
+    <!-- Panorama renderer, round timer, and map controls. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <div id="topBar">
@@ -22,7 +22,7 @@
             <p id="timer">1:00</p>
         </div>
     </div>
-    
+
     <div id="mapContainer">
         <div id="map"></div>
         <button>Guess</button>
@@ -30,6 +30,7 @@
 
     <div id="panoContainer"></div>
 
+    <!-- Load scene and game behavior after the page elements. -->
     <script src="scripts/panorama.js"></script>
     <script src="scripts/timer.js"></script>
     <script src="scripts/gameManager.js"></script>

@@ -1,30 +1,30 @@
+// Three.js scene objects used to render the campus panorama.
 let camera, scene, renderer;
-
 let panoramaMesh;
 let panoramaTexture;
 
-let isUserInteracting = false,
-    onPointerDownMouseX = 0, onPointerDownMouseY = 0,
-    lon = 0, onPointerDownLon = 0,
-    lat = 0, onPointerDownLat = 0,
-    phi = 0, theta = 0;
+// Current view direction and the pointer position at drag start.
+let onPointerDownMouseX = 0;
+let onPointerDownMouseY = 0;
+let lon = 0;
+let onPointerDownLon = 0;
+let lat = 0;
+let onPointerDownLat = 0;
 
+// Create the panorama scene and connect input and resize handlers.
 function init() {
-    const container = document.getElementById('panoContainer');
+    const container = document.getElementById("panoContainer");
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
-
     scene = new THREE.Scene();
 
     const geometry = new THREE.SphereGeometry(500, 60, 40);
-    // invert the geometry on the x-axis so that all of the faces point inward
-    geometry.scale(- 1, 1, 1);
-
+    geometry.scale(-1, 1, 1);
     const material = new THREE.MeshBasicMaterial();
     panoramaMesh = new THREE.Mesh(geometry, material);
     scene.add(panoramaMesh);
 
-    loadPanorama('resources/panoramas/pano1.jpg');
+    loadPanorama("resources/panoramas/pano1.jpg");
 
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -32,66 +32,60 @@ function init() {
     renderer.setAnimationLoop(animate);
     container.appendChild(renderer.domElement);
 
-    container.style.touchAction = 'none';
-    container.addEventListener('pointerdown', onPointerDown);
-
-    document.addEventListener('wheel', onDocumentMouseWheel);
-
-    window.addEventListener('resize', onWindowResize);
+    container.style.touchAction = "none";
+    container.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("wheel", onDocumentMouseWheel);
+    window.addEventListener("resize", onWindowResize);
 }
 
+// Keep the camera and renderer matched to the browser viewport.
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+// Remember the initial pointer and view direction when dragging begins.
 function onPointerDown(event) {
     if (event.isPrimary === false) return;
 
-    isUserInteracting = true;
-
     onPointerDownMouseX = event.clientX;
     onPointerDownMouseY = event.clientY;
-
     onPointerDownLon = lon;
     onPointerDownLat = lat;
 
-    document.addEventListener('pointermove', onPointerMove);
-    document.addEventListener('pointerup', onPointerUp);
+    document.addEventListener("pointermove", onPointerMove);
+    document.addEventListener("pointerup", onPointerUp);
 }
 
+// Convert pointer movement into horizontal and vertical view angles.
 function onPointerMove(event) {
     if (event.isPrimary === false) return;
 
-    lon = (onPointerDownMouseX - event.clientX) * 0.1 + onPointerDownLon;
-    lat = (event.clientY - onPointerDownMouseY) * 0.1 + onPointerDownLat;
+    lon = onPointerDownLon + (onPointerDownMouseX - event.clientX) * 0.1;
+    lat = onPointerDownLat + (event.clientY - onPointerDownMouseY) * 0.1;
 }
 
+// Remove drag listeners when the pointer is released.
 function onPointerUp(event) {
     if (event.isPrimary === false) return;
 
-    isUserInteracting = false;
-
-    document.removeEventListener('pointermove', onPointerMove);
-    document.removeEventListener('pointerup', onPointerUp);
+    document.removeEventListener("pointermove", onPointerMove);
+    document.removeEventListener("pointerup", onPointerUp);
 }
 
+// Use the mouse wheel to adjust the camera's field of view.
 function onDocumentMouseWheel(event) {
-
     const fov = camera.fov + event.deltaY * 0.05;
-
     camera.fov = THREE.MathUtils.clamp(fov, 10, 75);
-
     camera.updateProjectionMatrix();
-
 }
 
+// Aim the camera from the current longitude and latitude.
 function animate() {
-    lat = Math.max(- 85, Math.min(85, lat));
-    phi = THREE.MathUtils.degToRad(90 - lat);
-    theta = THREE.MathUtils.degToRad(lon);
+    lat = Math.max(-85, Math.min(85, lat));
+    const phi = THREE.MathUtils.degToRad(90 - lat);
+    const theta = THREE.MathUtils.degToRad(lon);
 
     const x = 500 * Math.sin(phi) * Math.cos(theta);
     const y = 500 * Math.cos(phi);
@@ -102,6 +96,7 @@ function animate() {
     renderer.render(scene, camera);
 }
 
+// Load a new panorama and release the previous texture when it succeeds.
 function loadPanorama(url) {
     new THREE.TextureLoader().load(
         url,
@@ -110,7 +105,7 @@ function loadPanorama(url) {
             panoramaTexture = texture;
             panoramaMesh.material.map = texture;
             panoramaMesh.material.needsUpdate = true;
-            previousTexture?.dispose();
+            if (previousTexture) previousTexture.dispose();
         },
         undefined,
         (error) => {

@@ -1,34 +1,35 @@
-let timerDisplay = document.getElementById("timer");
+// Update the timer text from the remaining number of seconds.
+const timerDisplay = document.getElementById("timer");
 let timeLeft = 60;
 let interval = null;
 
 function updateDisplay() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-
-    let minStr = minutes.toString().padStart(2, "0");
-    let secStr = seconds.toString().padStart(2, "0");
-
-    timerDisplay.textContent = minStr + ":" + secStr;
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerDisplay.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 }
 
+// Decrement once per tick and stop when the round runs out.
 function countdown() {
     if (timeLeft > 0) {
         timeLeft--;
         updateDisplay();
-    } else {
-        clearInterval(interval);
-        timeLeft = 60;
-        alert("Time's up!");
+        return;
     }
+
+    clearInterval(interval);
+    timeLeft = 60;
+    alert("Time's up!");
 }
 
+// Restart the countdown from its current time.
 function startTimer() {
     if (interval) clearInterval(interval);
     updateDisplay();
     interval = setInterval(countdown, 1000);
 }
 
+// Stop the countdown without resetting its remaining time.
 function pauseTimer() {
     clearInterval(interval);
 }
