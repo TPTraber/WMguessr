@@ -1,3 +1,8 @@
+:root{
+    --mapWidth: 25em;
+    --mapHeight: 15em;
+}
+
 /* Base page typography and spacing. */
 body {
     margin: 0;
@@ -37,12 +42,19 @@ body {
 
 /* Set the map preview's size and frame. */
 #map {
-    width: 25em;
-    height: 15em;
+    width: var(--mapWidth);
+    height: var(--mapHeight);
     border: 2px solid #B79257;
     border-radius: .5em;
+    margin: .5em 0em;
+    transition: height width 2s;
     margin: .5em 0;
 }
+
+/* #map:hover{
+    width: calc(var(--mapWidth) * 2);
+    height: calc(var(--mapHeight) * 2);
+} */
 
 /* Give buttons consistent sizing, spacing, and theme colors. */
 button {

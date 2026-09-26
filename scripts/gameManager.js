@@ -22,12 +22,6 @@ function startGame() {
     startTimer();
     init();
 
-    const map = L.map("map").setView([37.2712248, -76.7161386], 14.5);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
     pickPano();
 }
 
