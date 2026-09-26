@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: Tahoma, Verdana, sans-serif;
 }
 
 #topBar {
@@ -9,12 +10,38 @@ body {
     width: 100%;
 }
 
-#timer {
-    padding: 1em;
+#mapContainer {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 20px;
+}
+
+#timerContainer {
+    padding: 0em 1em 0em 1em;
     border-radius: .5em;
-    background-color: white;
+    background-color: #004E38;
+    border: 2px solid #B79257;
+    color: #FFFFFF;
 }
 
 #panoContainer {
     z-index: -1;
+}
+
+button {
+    background-color: #004E38;
+    border: 2px solid #B79257;
+    border-radius: .5em;
+    color: white;
+    padding: 0em 1em 0em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+  background-color: #183028;
 }

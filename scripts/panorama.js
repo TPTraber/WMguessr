@@ -6,8 +6,6 @@ let isUserInteracting = false,
     lat = 0, onPointerDownLat = 0,
     phi = 0, theta = 0;
 
-init();
-
 function init() {
     const container = document.getElementById('panoContainer');
 
