@@ -9,7 +9,7 @@ let isUserInteracting = false,
 init();
 
 function init() {
-    const container = document.getElementById('container');
+    const container = document.getElementById('panoContainer');
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
 
@@ -19,7 +19,7 @@ function init() {
     // invert the geometry on the x-axis so that all of the faces point inward
     geometry.scale(- 1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load('20220407_Pachon_P35mm_SOARG_L_Fulld1-CC.jpg');
+    const texture = new THREE.TextureLoader().load('resources/panoramas/20220407_Pachon_P35mm_SOARG_L_Fulld1-CC.jpg');
     texture.colorSpace = THREE.SRGBColorSpace;
     const material = new THREE.MeshBasicMaterial({ map: texture });
 

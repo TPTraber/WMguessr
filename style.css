@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+}
+
+#timerContainer {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+}
+
+#panoContainer {
+    z-index: -1;
+}
