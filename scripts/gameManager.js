@@ -1,3 +1,6 @@
+var pictureCoords;
+
+
 // Start a round once all page elements are ready.
 document.addEventListener("DOMContentLoaded", () => {
     startGame();
@@ -21,14 +24,33 @@ const availablePanos = [
 function startGame() {
     startTimer();
     init();
-
     pickPano();
 }
 
-function pickPano() {
+async function pickPano() {
     if (availablePanos.length === 0) return;
 
     const randomIndex = Math.floor(Math.random() * availablePanos.length);
     const [panorama] = availablePanos.splice(randomIndex, 1);
     loadPanorama(panorama);
+    pictureCoords = await parseExif(panorama);
+}
+
+async function parseExif(file){
+    try {
+      // Parse all standard EXIF tags
+      const data = await exifr.gps(file);
+      
+      console.log('Pano Location:', data.latitude, data.longitude);
+      return data
+    } catch (err) {
+      console.error('Error parsing EXIF:', err);
+    }
+}
+
+function submitGuess(){
+    var guess = getGuessCoords()
+    console.log('Guess vs coords', pictureCoords.latitude)
+    var points = Math.abs(guess.lat - pictureCoords.latitude);
+    console.log(points)
 }

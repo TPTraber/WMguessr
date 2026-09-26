@@ -18,7 +18,7 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
 function getGuessCoords() {
-    var coords = [0,0];
+    var coords = -1;
     if (typeof marker !== 'undefined'){
         coords = marker.getLatLng();
     }

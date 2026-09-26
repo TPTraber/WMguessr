@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <!-- Page metadata, shared styles, and the interactive map library. -->
     <meta charset="UTF-8">
@@ -11,6 +12,8 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src=" https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.min.js "></script>
 </head>
 
 <body>
@@ -25,7 +28,7 @@
 
     <div id="mapContainer">
         <div id="map"></div>
-        <button>Guess</button>
+        <button onclick="submitGuess()">Guess</button>
     </div>
 
     <div id="panoContainer"></div>
