@@ -87,4 +87,5 @@ function submitGuess(){
     dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
     console.log('Guess vs coords', dist);
     showAnswerMap(pictureCoords);
+    lockMap();
 }

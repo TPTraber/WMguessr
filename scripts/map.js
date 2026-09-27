@@ -10,7 +10,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var marker = L.marker();
 
 function onMapClick(e) {
-    if (guessMode){
+    if (guessMode) {
         guessCoords = e.latlng;
         marker
             .setLatLng(guessCoords).addTo(map);
@@ -21,7 +21,7 @@ map.on('click', onMapClick);
 
 function getGuessCoords() {
     var coords = -1;
-    if (typeof marker !== 'undefined'){
+    if (typeof marker !== 'undefined') {
         coords = marker.getLatLng();
     }
     console.log(coords);
@@ -30,15 +30,15 @@ function getGuessCoords() {
 
 var answer = L.marker();
 
-function showAnswerMap(coords){
+function showAnswerMap(coords) {
     answer
         .setLatLng(coords).addTo(map);
-        var polyline = L.polyline([coords, guessCoords], {color: 'red'}).addTo(map);
+    var polyline = L.polyline([coords, guessCoords], { color: 'red' }).addTo(map);
     var bounds = L.latLngBounds(coords, guessCoords).pad(0.2);
     map.fitBounds(bounds);
 }
 
-function resetMap(){
+function resetMap() {
     map.eachLayer(function (layer) {
         // Check if the layer is a marker (but not the base tile layer)
         if (layer instanceof L.Marker) {
@@ -49,13 +49,24 @@ function resetMap(){
     guessMode = true;
 }
 
-function setGuessMode(mode){
+function setGuessMode(mode) {
     guessMode = mode;
 }
 
 const resizeObserver = new ResizeObserver(() => {
-  map.invalidateSize();
+    map.invalidateSize();
 });
 
 const mapDiv = document.getElementById('map');
 resizeObserver.observe(mapDiv);
+
+function lockMap() {
+    map.dragging.disable();
+    map.scrollWheelZoom.disable();
+    map.doubleClickZoom.disable();
+    map.touchZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+    guessMode = false;
+    document.getElementById('map').style.cursor = 'default';
+}
