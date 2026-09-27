@@ -58,6 +58,7 @@ function startRound(){
     hideSummary();
     resetMap();
     pickPano();
+    currentState = GameState.GUESSING;
     startTimer(guessingTime);
     updateRoundDisplay(round, totalRounds);
 }
