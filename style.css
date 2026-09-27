@@ -15,6 +15,7 @@ body {
     justify-content: space-between;
     position: absolute;
     width: 100%;
+    z-index: 2;
 }
 
 /* Anchor the map controls in the lower-left corner. */
@@ -31,14 +32,39 @@ body {
     padding: 0 1em;
     margin: 1em;
     border-radius: .5em;
-    background-color: #004E38;
-    border: 2px solid #B79257;
+    background-color: #004e38e6;
+    /*border: 2px solid #B79257;*/
     color: #FFFFFF;
 }
 
 /* Keep the panorama behind the interactive interface. */
 #panoContainer {
-    z-index: -1;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* Add decorative overlays above the panorama without blocking interaction. */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+body::before {
+    top: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, #000000b3, transparent, #000000b3);
+}
+
+body::after {
+    bottom: 0;
+    height: 6px;
+    background-color: #B79257;
 }
 
 /* Set the map preview's size and frame. */
@@ -59,11 +85,11 @@ body {
 
 /* Give buttons consistent sizing, spacing, and theme colors. */
 button {
-    background-color: #004E38;
-    border: 2px solid #B79257;
+    background-color: #B79257;
+    border: none;
     border-radius: .5em;
     color: white;
-    padding: 0 1em;
+    padding: 1em;
     text-align: center;
     text-decoration: none;
     display: block;
@@ -75,5 +101,5 @@ button {
 
 /* Darken buttons on hover to indicate interactivity. */
 button:hover {
-    background-color: #183028;
+    background-color: #846838;
 }

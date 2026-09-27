@@ -82,8 +82,8 @@ function unlockMap(){
     map.boxZoom.enable();
     map.keyboard.enable();
     guessMode = true;
-    mapDiv.style.width = "var(--mapWidth)";
-    mapDiv.style.height = "var(--mapHeight)";
+    mapDiv.style.removeProperty("width");
+    mapDiv.style.removeProperty("height");
     //TODO: What is other cursor styles?
     document.getElementById('map').style.cursor = 'default';
 }
