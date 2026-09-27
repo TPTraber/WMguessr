@@ -20,14 +20,16 @@
     <!-- Panorama renderer, round timer, and map controls. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+    <button id="startButton" onclick="startGame()">Start</button>
+
     <div id="topBar">
-        <div id="pointContainer">
+        <div id="pointContainer" class="hidden">
             <p id="points">0</p>
         </div>
-        <div id="timerContainer">
+        <div id="timerContainer" class="hidden">
             <p id="timer">1:00</p>
         </div>
-        <div id="roundContainer">
+        <div id="roundContainer" class="hidden">
             <p id="rounds">0/5</p>
         </div>
     </div>
@@ -49,7 +51,7 @@
 
 
 
-    <div id="mapContainer">
+    <div id="mapContainer" class="hidden">
         <div id="map"></div>
         <button id="guess" onclick="submitGuess()">Guess</button>
     </div>

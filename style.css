@@ -128,7 +128,21 @@ button:hover {
     background-color: #846838;
 }
 
+#startButton {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: auto;
+    min-width: 10rem;
+}
+
 .hide{
     pointer-events: none;
     opacity: 0;
+}
+
+.hidden {
+  display: none;
 }

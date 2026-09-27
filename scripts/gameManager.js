@@ -39,11 +39,6 @@ console.log("\n\n\n\n\n\n\n\n\nWhatever helps you sleep at night I guess")
 
 let currentState = GameState.GUESSING;
 
-// Start a round once all page elements are ready.
-document.addEventListener("DOMContentLoaded", () => {
-    startGame();
-});
-
 // Keep one shared pool so each panorama can be selected only once.
 const availablePanos = [
     "resources/panoramas/IMG_20260926_162343_00_merged.jpg",
@@ -100,6 +95,11 @@ const availablePanos = [
 
 // Initialize the timer, panorama, and campus map.
 function startGame() {
+    document.getElementById("startButton").classList.add('hidden');
+    document.getElementById("timerContainer").classList.remove('hidden');
+    document.getElementById("roundContainer").classList.remove('hidden');
+    document.getElementById("pointContainer").classList.remove('hidden');
+    document.getElementById("mapContainer").classList.remove('hidden');
     initPano();
     startRound();
 }
