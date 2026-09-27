@@ -2,7 +2,7 @@ var pictureCoords;
 var round = 0;
 var totalRounds = 5;
 var pointTotal = 0;
-var guessingTime = 60;
+var guessingTime = 30;
 
 const GameState = Object.freeze({
     GUESSING: 'GUESSING',

@@ -1,6 +1,6 @@
 // Update the timer text from the remaining number of seconds.
 const timerDisplay = document.getElementById("timer");
-let timeLeft = 60;
+let timeLeft = 30;
 let interval = null;
 
 function updateDisplay() {
@@ -21,7 +21,6 @@ function countdown() {
 
     //Timer UP
     timerUp();
-    
 }
 
 // Restart the countdown from time given.
