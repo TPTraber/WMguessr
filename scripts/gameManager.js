@@ -174,7 +174,9 @@ function submitGuess(){
 
             if (typeof guess !== "undefined"){
                 dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
-                points = Math.max(Math.floor(200-dist), 0);
+                points = 1000 * (1-((Math.min(150,Math.max(dist)))
+                                    /150));
+                points = Math.round(points);
                 pointTotal += points;
                 updatePointDisplay(pointTotal);
                 didntGuess = false;
@@ -184,7 +186,7 @@ function submitGuess(){
                 dist = 0;
             }
             showAnswerMap(pictureCoords);
-            showSummary(round, dist, points, didntGuess);
+            showSummary(round, Math.round(dist), points, didntGuess);
             lockMap();
             currentState = GameState.POSTGUESS;
             startTimer(10);
