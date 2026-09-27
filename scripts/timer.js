@@ -29,6 +29,6 @@ function startTimer() {
 }
 
 // Stop the countdown without resetting its remaining time.
-function pauseTimer() {
+function resetTimer() {
     clearInterval(interval);
 }

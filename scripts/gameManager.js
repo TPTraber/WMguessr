@@ -1,5 +1,6 @@
 var pictureCoords;
-
+var round = 1;
+var pointTotal = 0;
 
 // Start a round once all page elements are ready.
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,10 +34,16 @@ const availablePanos = [
 
 // Initialize the timer, panorama, and campus map.
 function startGame() {
-    startTimer();
-    init();
-    pickPano();
+    initPano();
+    startRound();
+    
 }
+
+function startRound(){
+    pickPano();
+    startTimer();
+}
+
 
 async function pickPano() {
     if (availablePanos.length === 0) return;
@@ -82,10 +89,14 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
     return earthRadiusM * c;
 }
 
+//TODO: Deal with invalid / no guess
 function submitGuess(){
     var guess = getGuessCoords();
     dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
-    console.log('Guess vs coords', dist);
+    points = Math.max(Math.floor(200-dist), 0);
+    pointTotal += points;
+    resetTimer();
     showAnswerMap(pictureCoords);
     lockMap();
+    updatePointDisplay(pointTotal);
 }

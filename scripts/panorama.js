@@ -12,7 +12,7 @@ let lat = 0;
 let onPointerDownLat = 0;
 
 // Create the panorama scene and connect input and resize handlers.
-function init() {
+function initPano() {
     const container = document.getElementById("panoContainer");
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
