@@ -26,7 +26,6 @@ const availablePanos = [
     "resources/panoramas/IMG_20260926_211718_00_merged.jpg",
     "resources/panoramas/IMG_20260926_211901_00_merged.jpg",
     "resources/panoramas/IMG_20260926_212022_00_merged.jpg",
-    "resources/panoramas/IMG_20260926_212031_00_merged.jpg",
     "resources/panoramas/IMG_20260926_212157_00_merged.jpg",
     "resources/panoramas/IMG_20260926_212814_00_merged.jpg",
     "resources/panoramas/IMG_20260926_212957_00_merged.jpg"
