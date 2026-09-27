@@ -42,7 +42,7 @@ async function parseExif(file){
       const data = await exifr.gps(file);
       
       console.log('Pano Location:', data.latitude, data.longitude);
-      return data
+      return L.latLng(data.latitude, data.longitude);
     } catch (err) {
       console.error('Error parsing EXIF:', err);
     }
@@ -73,7 +73,7 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
 
 function submitGuess(){
     var guess = getGuessCoords();
-    dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.latitude, pictureCoords.longitude);
+    dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
     console.log('Guess vs coords', dist);
-    showAnswerMap()
+    showAnswerMap(pictureCoords);
 }
