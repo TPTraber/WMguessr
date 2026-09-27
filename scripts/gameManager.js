@@ -1,6 +1,16 @@
 var pictureCoords;
-var round = 1;
+var round = 0;
+var totalRounds = 5;
 var pointTotal = 0;
+var guessingTime = 60;
+
+const GameState = Object.freeze({
+    GUESSING: 'GUESSING',
+    POSTGUESS: 'POSTGUESS',
+    RESULTS: 'RESULTS'
+});
+
+let currentState = GameState.GUESSING
 
 // Start a round once all page elements are ready.
 document.addEventListener("DOMContentLoaded", () => {
@@ -36,12 +46,19 @@ const availablePanos = [
 function startGame() {
     initPano();
     startRound();
-    
 }
 
 function startRound(){
+    if(round > totalRounds) {
+        showResults(); 
+        return
+    }
+
+    round += 1;
+    resetMap();
     pickPano();
-    startTimer();
+    startTimer(guessingTime);
+    updateRoundDisplay(round, totalRounds);
 }
 
 
@@ -91,12 +108,30 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
 
 //TODO: Deal with invalid / no guess
 function submitGuess(){
+    resetTimer();
     var guess = getGuessCoords();
     dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
     points = Math.max(Math.floor(200-dist), 0);
     pointTotal += points;
-    resetTimer();
     showAnswerMap(pictureCoords);
     lockMap();
     updatePointDisplay(pointTotal);
+    currentState = GameState.POSTGUESS
+    startTimer(10);
+}
+
+function timerUp(){
+    switch(currentState) {
+        case GameState.GUESSING:
+            submitGuess();
+            break;
+        
+        case GameState.POSTGUESS:
+            startRound();
+            break;
+
+        case GameState.RESULTS:
+            console.log("Redirect to Home Page");
+            break;
+    }
 }

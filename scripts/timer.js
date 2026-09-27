@@ -18,12 +18,16 @@ function countdown() {
     }
 
     clearInterval(interval);
-    timeLeft = 60;
+
+    //Timer UP
+    timerUp();
+    
 }
 
-// Restart the countdown from its current time.
-function startTimer() {
+// Restart the countdown from time given.
+function startTimer(timeStart) {
     if (interval) clearInterval(interval);
+    timeLeft = timeStart;
     updateDisplay();
     interval = setInterval(countdown, 1000);
 }

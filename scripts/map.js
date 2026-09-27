@@ -45,6 +45,7 @@ function resetMap() {
             map.removeLayer(layer);
         }
     });
+    unlockMap();
     map.setView([37.2712248, -76.7161386], 14.5);
     guessMode = true;
 }
@@ -68,5 +69,21 @@ function lockMap() {
     map.boxZoom.disable();
     map.keyboard.disable();
     guessMode = false;
+    mapDiv.style.width = "calc(var(--mapWidth) * 2)";
+    mapDiv.style.height = "calc(var(--mapHeight) * 2)";
+    document.getElementById('map').style.cursor = 'default';
+}
+
+function unlockMap(){
+    map.dragging.enable();
+    map.scrollWheelZoom.enable();
+    map.doubleClickZoom.enable();
+    map.touchZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
+    guessMode = true;
+    mapDiv.style.width = "var(--mapWidth)";
+    mapDiv.style.height = "var(--mapHeight)";
+    //TODO: What is other cursor styles?
     document.getElementById('map').style.cursor = 'default';
 }
