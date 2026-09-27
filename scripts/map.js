@@ -46,3 +46,11 @@ function resetMap(){
 function setGuessMode(mode){
     guessMode = mode;
 }
+
+const resizeObserver = new ResizeObserver(() => {
+  map.invalidateSize();
+});
+
+const mapDiv = document.getElementById('map');
+resizeObserver.observe(mapDiv);
+

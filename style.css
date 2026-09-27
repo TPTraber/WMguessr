@@ -47,14 +47,14 @@ body {
     border: 2px solid #B79257;
     border-radius: .5em;
     margin: .5em 0em;
-    transition: height width 2s;
+    transition: width .5s, height .5s;
     margin: .5em 0;
 }
 
-/* #map:hover{
+#map:hover{
     width: calc(var(--mapWidth) * 2);
     height: calc(var(--mapHeight) * 2);
-} */
+}
 
 /* Give buttons consistent sizing, spacing, and theme colors. */
 button {
