@@ -41,7 +41,7 @@ function showAnswerMap(coords) {
 function resetMap() {
     map.eachLayer(function (layer) {
         // Check if the layer is a marker (but not the base tile layer)
-        if (layer instanceof L.Marker) {
+        if (layer instanceof L.Marker || layer instanceof L.Path) {
             map.removeLayer(layer);
         }
     });
