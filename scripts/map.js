@@ -20,12 +20,7 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
 function getGuessCoords() {
-    var coords = -1;
-    if (typeof marker !== 'undefined') {
-        coords = marker.getLatLng();
-    }
-    console.log(coords);
-    return coords;
+    return guessCoords;
 }
 
 var answer = L.marker();
@@ -33,9 +28,15 @@ var answer = L.marker();
 function showAnswerMap(coords) {
     answer
         .setLatLng(coords).addTo(map);
-    var polyline = L.polyline([coords, guessCoords], { color: 'red' }).addTo(map);
-    var bounds = L.latLngBounds(coords, guessCoords).pad(0.2);
-    map.fitBounds(bounds);
+        if(typeof guessCoords !== "undefined"){
+            var polyline = L.polyline([coords, guessCoords], { color: 'red' }).addTo(map);
+            var bounds = L.latLngBounds(coords, guessCoords).pad(0.2);
+            map.fitBounds(bounds);
+        }
+        else{
+            map.flyTo(answer.getLatLng());
+        }
+    
 }
 
 function resetMap() {
@@ -45,6 +46,7 @@ function resetMap() {
             map.removeLayer(layer);
         }
     });
+    guessCoords = L.latLng();
     unlockMap();
     map.setView([37.2712248, -76.7161386], 14.5);
     guessMode = true;

@@ -10,7 +10,7 @@ const GameState = Object.freeze({
     RESULTS: 'RESULTS'
 });
 
-let currentState = GameState.GUESSING
+let currentState = GameState.GUESSING;
 
 // Start a round once all page elements are ready.
 document.addEventListener("DOMContentLoaded", () => {
@@ -110,17 +110,35 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
 
 //TODO: Deal with invalid / no guess
 function submitGuess(){
-    resetTimer();
-    var guess = getGuessCoords();
-    dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
-    points = Math.max(Math.floor(200-dist), 0);
-    pointTotal += points;
-    showAnswerMap(pictureCoords);
-    lockMap();
-    updatePointDisplay(pointTotal);
-    showSummary(round, dist, points);
-    currentState = GameState.POSTGUESS;
-    startTimer(10);
+    switch(currentState){
+        case GameState.GUESSING:
+            resetTimer();
+            var guess = getGuessCoords();
+            var didntGuess = true;
+
+            if (typeof guess !== "undefined"){
+                dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
+                points = Math.max(Math.floor(200-dist), 0);
+                pointTotal += points;
+                updatePointDisplay(pointTotal);
+                didntGuess = false;
+            }
+            else{
+                points = 0;
+                dist = 0;
+            }
+            showAnswerMap(pictureCoords);
+            showSummary(round, dist, points, didntGuess);
+            lockMap();
+            currentState = GameState.POSTGUESS;
+            startTimer(10);
+            break;
+        case GameState.POSTGUESS:
+            startRound();
+            break;
+
+    }
+    
 }
 
 function timerUp(){
