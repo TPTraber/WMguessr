@@ -1,4 +1,5 @@
 var guessMode = true;
+var guessCoords = L.latLng();
 
 map = L.map('map').setView([37.2712248, -76.7161386], 14.5);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -9,9 +10,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var marker = L.marker();
 
 function onMapClick(e) {
-    if (guessMode)
-    marker
-        .setLatLng(e.latlng).addTo(map);;
+    if (guessMode){
+        guessCoords = e.latlng;
+        marker
+            .setLatLng(guessCoords).addTo(map);
+    }
 }
 
 map.on('click', onMapClick);
@@ -30,6 +33,8 @@ var answer = L.marker();
 function showAnswerMap(coords){
     answer
         .setLatLng(coords).addTo(map);
+    var bounds = L.latLngBounds(coords, guessCoords).pad(0.2);
+    map.fitBounds(bounds);
 }
 
 function resetMap(){
