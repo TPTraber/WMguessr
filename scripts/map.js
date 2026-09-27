@@ -25,3 +25,10 @@ function getGuessCoords() {
     console.log(coords);
     return coords;
 }
+
+const resizeObserver = new ResizeObserver(() => {
+  map.invalidateSize();
+});
+
+const mapDiv = document.getElementById('map');
+resizeObserver.observe(mapDiv);
