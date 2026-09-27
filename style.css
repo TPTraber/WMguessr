@@ -55,6 +55,7 @@ body {
     background-color: var(--primary-color);
     border: 2px solid #B79257;
     color: #FFFFFF;
+    z-index: 1;
 }
 
 /* Keep the panorama behind the interactive interface. */
@@ -122,4 +123,9 @@ button {
 /* Darken buttons on hover to indicate interactivity. */
 button:hover {
     background-color: #846838;
+}
+
+.hide{
+    pointer-events: none;
+    opacity: 0;
 }

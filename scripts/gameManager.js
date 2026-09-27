@@ -55,6 +55,7 @@ function startRound(){
     }
 
     round += 1;
+    hideSummary();
     resetMap();
     pickPano();
     startTimer(guessingTime);
@@ -116,6 +117,7 @@ function submitGuess(){
     showAnswerMap(pictureCoords);
     lockMap();
     updatePointDisplay(pointTotal);
+    showSummary(round, dist, points);
     currentState = GameState.POSTGUESS;
     startTimer(10);
 }
