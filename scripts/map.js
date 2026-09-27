@@ -7,13 +7,23 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+
+
 var marker = L.marker();
+
+var scaleFactor = 30
+
+var markerIcon = L.icon({
+    iconUrl: './resources/icons/guess_marker.png',
+    iconSize: [618 / scaleFactor, 1005 / scaleFactor],
+    iconAnchor: [618 / scaleFactor / 2, 1005/scaleFactor],
+});
 
 function onMapClick(e) {
     if (guessMode) {
         guessCoords = e.latlng;
         marker
-            .setLatLng(guessCoords).addTo(map);
+            .setLatLng(guessCoords).setIcon(markerIcon).addTo(map);
     }
 }
 
@@ -25,9 +35,17 @@ function getGuessCoords() {
 
 var answer = L.marker();
 
+var scaleFactor = 15
+
+var answerIcon = L.icon({
+    iconUrl: './resources/icons/answer_marker.png',
+    iconSize: [360 / scaleFactor, 600 / scaleFactor],
+    iconAnchor: [360 / scaleFactor / 2, 600/scaleFactor],
+});
+
 function showAnswerMap(coords) {
     answer
-        .setLatLng(coords).addTo(map);
+        .setLatLng(coords).setIcon(answerIcon).addTo(map);
         if(typeof guessCoords !== "undefined"){
             var polyline = L.polyline([coords, guessCoords], { color: 'red' }).addTo(map);
             var bounds = L.latLngBounds(coords, guessCoords).pad(0.2);
