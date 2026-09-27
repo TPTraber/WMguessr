@@ -33,6 +33,7 @@ var answer = L.marker();
 function showAnswerMap(coords){
     answer
         .setLatLng(coords).addTo(map);
+        var polyline = L.polyline([coords, guessCoords], {color: 'red'}).addTo(map);
     var bounds = L.latLngBounds(coords, guessCoords).pad(0.2);
     map.fitBounds(bounds);
 }
