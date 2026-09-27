@@ -19,7 +19,6 @@ function countdown() {
 
     clearInterval(interval);
     timeLeft = 60;
-    alert("Time's up!");
 }
 
 // Restart the countdown from its current time.
