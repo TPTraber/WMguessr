@@ -1,4 +1,6 @@
 :root{
+    --primary-color: #004E38;
+    --accent-color: #B79257;
     --mapWidth: 25em;
     --mapHeight: 15em;
 }
@@ -32,8 +34,26 @@ body {
     padding: 0 1em;
     margin: 1em;
     border-radius: .5em;
-    background-color: #004e38e6;
+    background-color: var(--primary-color);
     /*border: 2px solid #B79257;*/
+    color: #FFFFFF;
+}
+
+#roundSummaryContainer{
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 70%;
+    height: auto;
+    overflow: auto;
+
+    padding: 0 1em;
+    margin: 1em;
+    border-radius: .5em;
+    background-color: var(--primary-color);
+    border: 2px solid #B79257;
     color: #FFFFFF;
 }
 
@@ -71,7 +91,7 @@ body::after {
 #map {
     width: var(--mapWidth);
     height: var(--mapHeight);
-    border: 2px solid #B79257;
+    border: 2px solid var(--accent-color);
     border-radius: .5em;
     margin: .5em 0em;
     transition: width .5s, height .5s;
@@ -85,7 +105,7 @@ body::after {
 
 /* Give buttons consistent sizing, spacing, and theme colors. */
 button {
-    background-color: #B79257;
+    background-color: var(--accent-color);
     border: none;
     border-radius: .5em;
     color: white;

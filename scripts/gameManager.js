@@ -116,7 +116,7 @@ function submitGuess(){
     showAnswerMap(pictureCoords);
     lockMap();
     updatePointDisplay(pointTotal);
-    currentState = GameState.POSTGUESS
+    currentState = GameState.POSTGUESS;
     startTimer(10);
 }
 
