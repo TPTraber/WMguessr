@@ -76,6 +76,7 @@ function startGame() {
 }
 
 function startRound(){
+    document.getElementById("guess").innerHTML = "Guess";
     round += 1;
     if(round > totalRounds) {
         hideSummary();
@@ -158,6 +159,7 @@ function submitGuess(){
             lockMap();
             currentState = GameState.POSTGUESS;
             startTimer(10);
+            document.getElementById("guess").innerHTML = "Next";
             break;
         case GameState.POSTGUESS:
             startRound();
@@ -188,7 +190,8 @@ function againAgain(){
 }
 
 function endGame(){
-    panoToGreen();
+    removePano();
+    document.getElementById("guess").remove();
     showResults(pointTotal);
     hideMap();
 }

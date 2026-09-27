@@ -130,11 +130,6 @@ function createColorTexture(colorHex, width = 16, height = 16) {
 }
 
 
-function panoToGreen(){
-
-    const previousTexture = panoramaTexture;
-    panoramaTexture = createColorTexture('#193d18');
-    panoramaMesh.material.map = panoramaTexture;
-    panoramaMesh.material.needsUpdate = true;
-    if (previousTexture) previousTexture.dispose();
+function removePano(){
+    renderer.domElement.remove();
 }

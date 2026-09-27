@@ -1,5 +1,6 @@
 :root{
-    --primary-color: #004E38;
+    --primary-color:#004E38;
+    --primary-color-transparent: #004E38E6;
     --accent-color: #B79257;
     --mapWidth: 25em;
     --mapHeight: 15em;
@@ -35,7 +36,7 @@ body {
     
     margin: 1em;
     border-radius: .5em;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-transparent);
     /*border: 2px solid #B79257;*/
     color: #FFFFFF;
 }
@@ -54,9 +55,8 @@ body {
     padding-bottom: 1em;
     margin: 1em;
     border-radius: .5em;
-    background-color: var(--primary-color);
-    border: 2px solid #B79257;
-    color: #FFFFFF;
+    background-color: white;
+    color: black;
     z-index: 1;
 }
 
@@ -65,6 +65,7 @@ body {
     position: fixed;
     inset: 0;
     z-index: 0;
+    background: linear-gradient(to bottom right, #846838, #004E38, #846838);
 }
 
 /* Add decorative overlays above the panorama without blocking interaction. */
@@ -80,14 +81,14 @@ body::after {
 
 body::before {
     top: 0;
-    height: 100%;
-    background: linear-gradient(to bottom, #000000b3, transparent, #000000b3);
+    height: 25%;
+    background: linear-gradient(to bottom, #00000090, transparent);
 }
 
 body::after {
     bottom: 0;
     height: 6px;
-    background-color: #B79257;
+    background-color: var(--accent-color);
 }
 
 /* Set the map preview's size and frame. */
