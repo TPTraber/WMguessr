@@ -111,3 +111,30 @@ function loadPanorama(url) {
         }
     );
 }
+
+//Ai Generated Function
+function createColorTexture(colorHex, width = 16, height = 16) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = colorHex;
+    ctx.fillRect(0, 0, width, height);
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    
+    texture.colorSpace = THREE.SRGBColorSpace; 
+    
+    return texture;
+}
+
+
+function panoToGreen(){
+
+    const previousTexture = panoramaTexture;
+    panoramaTexture = createColorTexture('#193d18');
+    panoramaMesh.material.map = panoramaTexture;
+    panoramaMesh.material.needsUpdate = true;
+    if (previousTexture) previousTexture.dispose();
+}

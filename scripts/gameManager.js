@@ -49,12 +49,12 @@ function startGame() {
 }
 
 function startRound(){
+    round += 1;
     if(round > totalRounds) {
-        showResults(); 
+        hideSummary();
+        endGame();
         return
     }
-
-    round += 1;
     hideSummary();
     resetMap();
     pickPano();
@@ -137,4 +137,14 @@ function timerUp(){
             console.log("Redirect to Home Page");
             break;
     }
+}
+
+function againAgain(){
+    location.reload();
+}
+
+function endGame(){
+    panoToGreen();
+    showResults(pointTotal);
+    hideMap();
 }

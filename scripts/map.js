@@ -87,3 +87,8 @@ function unlockMap(){
     //TODO: What is other cursor styles?
     document.getElementById('map').style.cursor = 'default';
 }
+
+function hideMap(){
+    mapDiv.classList.add('hide');
+    lockMap();
+}

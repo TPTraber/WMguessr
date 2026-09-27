@@ -32,13 +32,22 @@
         </div>
     </div>
 
-    <div id="roundSummaryContainer">
+    <div id="roundSummaryContainer" class="summaryContainer">
         <h2 id="summaryRound">Round 0</h2> 
         <h3>Distance: </h3>
         <p id="summaryDistance">500 M</p>
         <h3>Points Gained:</h3>
         <p id="summaryPoints">20</p>
     </div>
+
+    <div id="gameSummaryContainer" class="summaryContainer">
+        <h2>Game Over!</h2>
+        <h3 >Total Score:</h3> 
+            <p id="gameSummaryScore">0</p>
+            <button onclick="againAgain()">Play Again?</button>
+    </div>
+
+
 
     <div id="mapContainer">
         <div id="map"></div>
@@ -49,6 +58,7 @@
 
     <!-- Load scene and game behavior after the page elements. -->
      <script src="scripts/roundSummary.js"></script>
+     <script src="scripts/gameSummary.js"></script>
     <script src="scripts/panorama.js"></script>
     <script src="scripts/map.js"></script>
     <script src="scripts/timer.js"></script>
