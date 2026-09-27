@@ -59,4 +59,3 @@ const resizeObserver = new ResizeObserver(() => {
 
 const mapDiv = document.getElementById('map');
 resizeObserver.observe(mapDiv);
-

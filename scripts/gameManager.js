@@ -9,15 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
 // Keep one shared pool so each panorama can be selected only once.
 const availablePanos = [
     "resources/panoramas/IMG_20260926_162343_00_merged.jpg",
-    "resources/panoramas/IMG_20260926_163145_00_383.jpg",
-    "resources/panoramas/IMG_20260926_163251_00_384.jpg",
-    "resources/panoramas/IMG_20260926_163318_00_385.jpg",
     "resources/panoramas/IMG_20260926_163720_00_merged.jpg",
     "resources/panoramas/IMG_20260926_163926_00_merged.jpg",
     "resources/panoramas/IMG_20260926_164403_00_merged.jpg",
     "resources/panoramas/IMG_20260926_164939_00_merged.jpg",
     "resources/panoramas/IMG_20260926_165319_00_merged.jpg",
-    "resources/panoramas/IMG_20260926_170401_00_merged.jpg"
+    "resources/panoramas/IMG_20260926_170401_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_205108_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_205432_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_205632_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_205901_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_210108_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_210402_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_210550_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_210920_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_211718_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_211901_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_212022_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_212031_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_212157_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_212814_00_merged.jpg",
+    "resources/panoramas/IMG_20260926_212957_00_merged.jpg"
 ];
 
 // Initialize the timer, panorama, and campus map.
