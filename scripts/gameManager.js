@@ -174,7 +174,7 @@ function submitGuess(){
 
             if (typeof guess !== "undefined"){
                 dist = distanceInMBetweenEarthCoordinates(guess.lat, guess.lng, pictureCoords.lat, pictureCoords.lng);
-                points = 1000 * (1-((Math.min(150,Math.max(dist)))
+                points = 1000 * (1-((Math.min(150,Math.max(dist,15)-15))
                                     /150));
                 points = Math.round(points);
                 pointTotal += points;
