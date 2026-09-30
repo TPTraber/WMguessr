@@ -24,7 +24,7 @@ function countdown() {
 }
 
 // Restart the countdown from time given.
-function startTimer(timeStart) {
+export function startTimer(timeStart) {
     if (interval) clearInterval(interval);
     timeLeft = timeStart;
     updateDisplay();
@@ -32,6 +32,6 @@ function startTimer(timeStart) {
 }
 
 // Stop the countdown without resetting its remaining time.
-function resetTimer() {
+export function resetTimer() {
     clearInterval(interval);
 }

@@ -12,7 +12,7 @@ let lat = 0;
 let onPointerDownLat = 0;
 
 // Create the panorama scene and connect input and resize handlers.
-function initPano() {
+export function initPano() {
     const container = document.getElementById("panoContainer");
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
@@ -95,7 +95,7 @@ function animate() {
 }
 
 // Load a new panorama and release the previous texture when it succeeds.
-function loadPanorama(url) {
+export function loadPanorama(url) {
     new THREE.TextureLoader().load(
         url,
         (texture) => {
@@ -112,24 +112,6 @@ function loadPanorama(url) {
     );
 }
 
-//Ai Generated Function
-function createColorTexture(colorHex, width = 16, height = 16) {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = colorHex;
-    ctx.fillRect(0, 0, width, height);
-    
-    const texture = new THREE.CanvasTexture(canvas);
-    
-    texture.colorSpace = THREE.SRGBColorSpace; 
-    
-    return texture;
-}
-
-
-function removePano(){
+export function removePano(){
     renderer.domElement.remove();
 }

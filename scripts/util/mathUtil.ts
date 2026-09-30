@@ -2,11 +2,11 @@
 // Posted by cletus, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-09-26, License - CC BY-SA 4.0
 
-function degreesToRadians(degrees : number) {
+export function degreesToRadians(degrees : number) {
     return degrees * Math.PI / 180;
 }
 
-function distanceInMBetweenEarthCoordinates(lat1 : number, lon1 : number, lat2 : number, lon2 : number) {
+export function distanceInMBetweenEarthCoordinates(lat1 : number, lon1 : number, lat2 : number, lon2 : number) {
     var earthRadiusM = 6371000;
     
     var dLat = degreesToRadians(lat2-lat1);

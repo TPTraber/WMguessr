@@ -1,8 +1,12 @@
-import {getGuessCoords} from './map'
+import {getGuessCoords, hideMap, resetMap, lockMap} from './map'
+
+import {startTimer, resetTimer} from './timer'
 
 import{getRequiredElement} from './util/uiUtil'
 
 import{distanceInMBetweenEarthCoordinates} from './util/mathUtil'
+
+import {initPano, loadPanorama, removePano} from './panorama'
 
 var pictureCoords = L.latLng();
 var round = 0;
