@@ -4,13 +4,13 @@ const summaryGameContainer = getRequiredElement("gameSummaryContainer");
 
 const totalPointSummaryText = getRequiredElement("gameSummaryScore");
 
-function showResults(points : number){
+export function showResults(points : number){
     totalPointSummaryText.textContent = "" + points;
 
     summaryGameContainer.classList.remove('hide');
 }
 
-function hideGameSummary(){
+export function hideGameSummary(){
     summaryGameContainer.classList.add('hide');
 }
 
