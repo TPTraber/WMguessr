@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Page metadata & shared styles -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="icon" type="image/x-icon" href="resources/wmchiffre1.jpg">
+</head>
+
+<body>
+    <button id="startButton" onclick="startGame()">Start</button>
+
+    <div id="topBar">
+        <div id="pointContainer" class="hidden">
+            <p id="points">0</p>
+        </div>
+        <div id="timerContainer" class="hidden">
+            <p id="timer">00:30</p>
+        </div>
+        <div id="roundContainer" class="hidden">
+            <p id="rounds">0/5</p>
+        </div>
+    </div>
+
+    <div id="roundSummaryContainer" class="summaryContainer">
+        <h2 id="summaryRound">Round 0</h2> 
+        <h3>Distance: </h3>
+        <p id="summaryDistance">500 M</p>
+        <h3>Points Gained:</h3>
+        <p id="summaryPoints">20</p>
+    </div>
+
+    <div id="gameSummaryContainer" class="summaryContainer">
+        <h2>Game Over!</h2>
+        <h3 >Total Score:</h3> 
+            <p id="gameSummaryScore">0</p>
+            <button onclick="againAgain()">Play Again?</button>
+    </div>
+
+
+
+    <div id="mapContainer" class="hidden">
+        <div id="map"></div>
+        <button id="guess" onclick="submitGuess()">Guess</button>
+    </div>
+
+    <div id="panoContainer"></div>
+
+    <!-- Load scene and game behavior after the page elements. -->
+    <script type="module" src="/src/scripts/gameManager.ts"></script>
+
+</body>
+
+</html>

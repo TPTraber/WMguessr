@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 // Three.js scene objects used to render the campus panorama.
 let camera, scene, renderer;
 let panoramaMesh;

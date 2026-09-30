@@ -1,7 +1,10 @@
-var guessMode = true;
-var guessCoords = L.latLng();
+import L, { LatLng } from 'leaflet';
+import { getRequiredElement } from './util/uiUtil';
 
-map = L.map('map').setView([37.2712248, -76.7161386], 14.5);
+var guessMode = true;
+var guessCoords = L.latLng(0, 0);
+
+var map = L.map('map').setView([37.2712248, -76.7161386], 14.5);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -9,7 +12,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 
-var marker = L.marker();
+var marker = L.marker(L.latLng(0,0));
 
 var scaleFactor = 30
 
@@ -19,7 +22,7 @@ var markerIcon = L.icon({
     iconAnchor: [618 / scaleFactor / 2, 1005/scaleFactor],
 });
 
-function onMapClick(e) {
+function onMapClick(e : ) {
     if (guessMode) {
         guessCoords = e.latlng;
         marker
@@ -33,7 +36,7 @@ export function getGuessCoords() {
     return guessCoords;
 }
 
-var answer = L.marker();
+var answer = L.marker(L.latLng(0,0));
 
 var scaleFactor = 15
 
@@ -43,7 +46,7 @@ var answerIcon = L.icon({
     iconAnchor: [360 / scaleFactor / 2, 600/scaleFactor],
 });
 
-export function showAnswerMap(coords) {
+export function showAnswerMap(coords : LatLng) {
     answer
         .setLatLng(coords).setIcon(answerIcon).addTo(map);
         if(typeof guessCoords !== "undefined"){
@@ -64,13 +67,13 @@ export function resetMap() {
             map.removeLayer(layer);
         }
     });
-    guessCoords = L.latLng();
+    guessCoords = L.latLng(0, 0);
     unlockMap();
     map.setView([37.2712248, -76.7161386], 14.5);
     guessMode = true;
 }
 
-export function setGuessMode(mode) {
+export function setGuessMode(mode : boolean) {
     guessMode = mode;
 }
 
@@ -78,7 +81,7 @@ const resizeObserver = new ResizeObserver(() => {
     map.invalidateSize();
 });
 
-const mapDiv = document.getElementById('map');
+const mapDiv = getRequiredElement('map');
 resizeObserver.observe(mapDiv);
 
 export function lockMap() {
@@ -91,7 +94,7 @@ export function lockMap() {
     guessMode = false;
     mapDiv.style.width = "calc(var(--mapWidth) * 2)";
     mapDiv.style.height = "calc(var(--mapHeight) * 2)";
-    document.getElementById('map').style.cursor = 'default';
+    getRequiredElement('map').style.cursor = 'default';
 }
 
 export function unlockMap(){
@@ -105,7 +108,7 @@ export function unlockMap(){
     mapDiv.style.removeProperty("width");
     mapDiv.style.removeProperty("height");
     //TODO: What is other cursor styles?
-    document.getElementById('map').style.cursor = 'default';
+    getRequiredElement('map').style.cursor = 'default';
 }
 
 export function hideMap(){
