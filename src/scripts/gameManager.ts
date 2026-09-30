@@ -1,4 +1,4 @@
-import {getGuessCoords, hideMap, resetMap, lockMap} from './map'
+import {getGuessCoords, hideMap, resetMap, lockMap, showAnswerMap} from './map'
 
 import {startTimer, resetTimer} from './timer'
 
@@ -8,9 +8,21 @@ import{distanceInMBetweenEarthCoordinates} from './util/mathUtil'
 
 import {initPano, loadPanorama, removePano} from './panorama'
 
-import {hideSummary, } from './roundSummary'
+import {showSummary, hideSummary} from './roundSummary'
 
-var pictureCoords = L.latLng();
+import { showResults } from './gameSummary'
+
+import { updateRoundDisplay } from './rounds'
+
+import { updatePointDisplay } from './points'
+
+import { availablePanos } from './panoList'
+
+import L from 'leaflet';
+
+import exifr from 'exifr';
+
+var pictureCoords = L.latLng(0, 0);
 var round = 0;
 var totalRounds = 5;
 var pointTotal = 0;
@@ -88,7 +100,7 @@ async function pickPano() {
     pictureCoords = await parseExif(panorama);
 }
 
-async function parseExif(file){
+async function parseExif(file : string){
     try {
       // Parse all standard EXIF tags
       const data = await exifr.gps(file);
@@ -96,12 +108,10 @@ async function parseExif(file){
       return L.latLng(data.latitude, data.longitude);
     } catch (err) {
       console.error('Error parsing EXIF:', err);
+            return L.latLng(-1, -1);
     }
 }
 
-
-
-//TODO: Deal with invalid / no guess
 function submitGuess(){
     switch(currentState){
         case GameState.GUESSING:
@@ -118,7 +128,7 @@ function submitGuess(){
                                     /150));
                 points = Math.round(points);
                 pointTotal += points;
-                updatePointDisplay(pointTotal);//UI ELEMENT
+                updatePointDisplay(pointTotal.toString());//UI ELEMENT
                 didntGuess = false;
             }
 

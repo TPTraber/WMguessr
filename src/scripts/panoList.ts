@@ -1,5 +1,5 @@
 // Keep one shared pool so each panorama can be selected only once.
-const availablePanos = [
+export const availablePanos = [
     "resources/panoramas/IMG_20260926_162343_00_merged.jpg",
     "resources/panoramas/IMG_20260926_163720_00_merged.jpg",
     "resources/panoramas/IMG_20260926_163926_00_merged.jpg",
