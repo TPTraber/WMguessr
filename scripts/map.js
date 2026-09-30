@@ -29,7 +29,7 @@ function onMapClick(e) {
 
 map.on('click', onMapClick);
 
-function getGuessCoords() {
+export function getGuessCoords() {
     return guessCoords;
 }
 
@@ -43,7 +43,7 @@ var answerIcon = L.icon({
     iconAnchor: [360 / scaleFactor / 2, 600/scaleFactor],
 });
 
-function showAnswerMap(coords) {
+export function showAnswerMap(coords) {
     answer
         .setLatLng(coords).setIcon(answerIcon).addTo(map);
         if(typeof guessCoords !== "undefined"){
@@ -57,7 +57,7 @@ function showAnswerMap(coords) {
     
 }
 
-function resetMap() {
+export function resetMap() {
     map.eachLayer(function (layer) {
         // Check if the layer is a marker or path (but not the base tile layer)
         if (layer instanceof L.Marker || layer instanceof L.Path) {
@@ -70,7 +70,7 @@ function resetMap() {
     guessMode = true;
 }
 
-function setGuessMode(mode) {
+export function setGuessMode(mode) {
     guessMode = mode;
 }
 
@@ -81,7 +81,7 @@ const resizeObserver = new ResizeObserver(() => {
 const mapDiv = document.getElementById('map');
 resizeObserver.observe(mapDiv);
 
-function lockMap() {
+export function lockMap() {
     map.dragging.disable();
     map.scrollWheelZoom.disable();
     map.doubleClickZoom.disable();
@@ -94,7 +94,7 @@ function lockMap() {
     document.getElementById('map').style.cursor = 'default';
 }
 
-function unlockMap(){
+export function unlockMap(){
     map.dragging.enable();
     map.scrollWheelZoom.enable();
     map.doubleClickZoom.enable();
@@ -108,7 +108,7 @@ function unlockMap(){
     document.getElementById('map').style.cursor = 'default';
 }
 
-function hideMap(){
+export function hideMap(){
     mapDiv.classList.add('hide');
     lockMap();
 }
