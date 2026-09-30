@@ -8,6 +8,8 @@ import{distanceInMBetweenEarthCoordinates} from './util/mathUtil'
 
 import {initPano, loadPanorama, removePano} from './panorama'
 
+import {hideSummary, } from './roundSummary'
+
 var pictureCoords = L.latLng();
 var round = 0;
 var totalRounds = 5;
